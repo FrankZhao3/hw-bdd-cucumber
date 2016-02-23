@@ -25,9 +25,9 @@ Scenario: restrict to movies with 'PG' or 'R' ratings
   # enter step(s) to check the 'PG' and 'R' checkboxes
   When I check the following ratings: PG, R
   # enter step(s) to uncheck all other checkboxes
-  When I uncheck the following ratings: PG
+  When I uncheck the following ratings: PG-13, G
   # enter step to "submit" the search form on the homepage
-  Then I enter step to "submit" the search form on the homepage
+  And I submit the search
   # enter step(s) to ensure that PG and R movies are visible
   Then I should see movies
   | title                   | rating | release_date |
@@ -37,7 +37,7 @@ Scenario: restrict to movies with 'PG' or 'R' ratings
   | The Incredibles         | PG     | 5-Nov-2004   |
   | Raiders of the Lost Ark | PG     | 12-Jun-1981  |
   # enter step(s) to ensure that other movies are not visible
-  And I should not see movies
+  Then I should not see movies
   | title                   | rating | release_date |
   | Aladdin                 | G      | 25-Nov-1992  |
   | The Help                | PG-13  | 10-Aug-2011  |
